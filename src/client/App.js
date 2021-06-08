@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Items from './Items/Items';
 
 export default () => (
   <div className="wrapper">
@@ -23,7 +24,8 @@ export default () => (
           <div className="filters">
             <input className="form-control" placeholder="Name" />
           </div>
-          <ul className="item-picker">
+          <Items/>
+          {/* <ul className="item-picker">
             <li className="item">
               <h2>Dummy item</h2>
               <p>
@@ -80,7 +82,7 @@ export default () => (
                 <span className="dietary">n!</span>
               </p>
             </li>
-          </ul>
+          </ul> */}
         </div>
         <div className="col-8">
           <h2>Menu preview</h2>
