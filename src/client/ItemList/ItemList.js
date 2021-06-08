@@ -1,23 +1,27 @@
-import React from 'react';
+import React,{ useEffect, useState } from 'react';
+import Item from '../Item/Item'
+import ApiService from '../apiService';
 import './ItemList.css';
 
-function ItemList({items}){
-    console.log(items)
-
+function ItemList({addItemToMenu}){
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+     ApiService.getItems()
+    .then(items => setItems(items.items))
+  }, []);
     return (
-        <div>{ items.length? items.map(item => (<div className="items" key={item.id}>
-            <div className="item">
-              <h2>{item.name}</h2>
-              <p>
-                  {item.dietaries.map((diet, index) => <span key={index} className="dietary">{diet}</span>)}
-              </p>
+      <div>
+        {
+          items.length
+          ? items.map(item => (
+            <div key={item.id} onClick={() => addItemToMenu(item)}>
+              <Item  item={item} key={item.id}/>
             </div>
-            </div>)
-        ): null
+          ))
+          : null
+          }
+      </div>
+    )
 }
-</div>
-)
-}
-
 
 export default ItemList;

@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Items from './Items/Items';
+import ItemList from './ItemList/ItemList';
+import ItemsInMenu from './Menu/ItemsInMenu';
 
-export default () => (
+export default () => {
+  const [menuList, setMenuList] = useState([]);
+
+  const addItemToMenu = (item) => {
+    const newList = [...menuList, item];
+    setMenuList(newList.map((item, key) => { item.key = key; return item }));
+  }
+
+
+
+  return (
   <div className="wrapper">
     <div className="menu-summary">
       <div className="container">
         <div className="row">
           <div className="col-6 menu-summary-left">
-            <span>6 items</span>
+            <span>{
+              menuList.length === 1
+              ? "1 item"
+              : `${menuList.length} items`
+            }</span>
           </div>
           <div className="col-6 menu-summary-right">
             6x <span className="dietary">ve</span>
@@ -24,108 +39,16 @@ export default () => (
           <div className="filters">
             <input className="form-control" placeholder="Name" />
           </div>
-          <Items/>
-          {/* <ul className="item-picker">
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-          </ul> */}
+          <ItemList addItemToMenu={addItemToMenu}/>
         </div>
         <div className="col-8">
           <h2>Menu preview</h2>
-          <ul className="menu-preview">
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-              <button className="remove-item">x</button>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-              <button className="remove-item">x</button>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-              <button className="remove-item">x</button>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-              <button className="remove-item">x</button>
-            </li>
-          </ul>
+          <ItemsInMenu
+          className="items"
+          menuList={menuList}
+        />
         </div>
       </div>
     </div>
   </div>
-);
+)};
