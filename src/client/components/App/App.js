@@ -29,6 +29,12 @@ export default () => {
     }
   }
 
+  const deleteItem = (item) => {
+    const newList = menuList.filter(el => item.id != el.id)
+    setMenuList(newList)
+  }
+
+
   return (
   <div className="wrapper">
     <MenuSummary menuList={menuList}/>
@@ -40,7 +46,7 @@ export default () => {
           </div>
           <ItemList checkList={checkList}/>
         </div>
-       <MenuPreview menuList={menuList}/>
+       <MenuPreview menuList={menuList} deleteItem={deleteItem}/>
       </div>
     </div>
   </div>
