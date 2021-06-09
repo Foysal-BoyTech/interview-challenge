@@ -5,6 +5,10 @@ function getItems (){
     return fetchRequest('/api/items');
 }
 
+function getItemsByName (name) {
+    return
+}
+
 
 function fetchRequest (path){
 
