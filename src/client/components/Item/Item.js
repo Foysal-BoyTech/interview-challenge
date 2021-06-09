@@ -1,20 +1,23 @@
-import React from 'react';
+import React from 'react'
 
-function Item ({item, show, deleteItem}) {
-//    const []
-
-//    const deleteItem = (item) => {
-//      menuList.filter(el => el != item.id)
-//   }
-
-   return (
-      <div className="item">
-         <h2>{item.name}</h2>
-         <p>
-            {item.dietaries.map((dietary, index) => <span key={index} className="dietary">{dietary}</span>)}
-         </p>
-         {show ? <p onClick={() => deleteItem(item)}>X</p>: null }
+function Item({ item, show, deleteItem }) {
+  return (
+    <div className="item button">
+      <div>
+        <h2>{item.name}</h2>
+        <p>
+          {item.dietaries.map((dietary, index) => (
+            <span key={index} className="dietary">
+              {dietary}
+            </span>
+          ))}
+        </p>
       </div>
-)};
+      <div>
+        {show ? <button onClick={() => deleteItem(item)}>X</button> : null}
+      </div>
+    </div>
+  )
+}
 
-export default Item;
+export default Item

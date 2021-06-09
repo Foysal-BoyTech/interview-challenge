@@ -99,4 +99,4 @@ module.exports = [
     name: 'Mangajo Acai',
     dietaries: ['ve', 'v', 'gf'],
   },
-];
+]
