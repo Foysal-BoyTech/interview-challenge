@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Item from '../Item/Item'
-import ApiService from '../../apiService'
-import './ItemList.css'
 
 function ItemList({ checkList, items }) {
   return (

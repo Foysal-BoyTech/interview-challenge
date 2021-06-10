@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { debounce } from 'lodash'
+import _, { debounce } from 'lodash'
 import apiService from '../../apiService'
 
 function Input({ setItems }) {
   const [name, setNames] = useState('')
 
   useEffect(() => {
-    console.log(name)
     if (name.length) searchByName()
   }, [name])
 
   const searchByName = debounce(() => {
     apiService.getItemsByName(name).then((res) => {
-      console.log(res)
       setItems(res)
     })
   }, 400)
@@ -24,7 +22,6 @@ function Input({ setItems }) {
         placeholder="Name"
         value={name}
         onChange={(e) => setNames(e.target.value)}
-        // onClick={handleClick}
       />
     </div>
   )

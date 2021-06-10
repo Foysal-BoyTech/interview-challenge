@@ -2,7 +2,7 @@ import React from 'react'
 
 function Item({ item, show, deleteItem }) {
   return (
-    <div className="item button">
+    <div className="item item-preview">
       <div>
         <h2>{item.name}</h2>
         <p>

@@ -65,9 +65,6 @@
 }
 
 .menu-preview {
-  /* padding: 20px;
-  list-style: none;
-  margin: 0; */
   background: #f8f8f8;
   padding: 20px;
   list-style: none;
@@ -112,9 +109,9 @@ button.remove-item {
 button.remove-item:focus {
   outline: none;
 }
-.button {
+.item-preview {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: first baseline;
+  justify-content: space-between;
 }
