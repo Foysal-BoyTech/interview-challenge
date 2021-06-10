@@ -5,7 +5,7 @@ function getItems() {
 }
 
 function getItemsByName(name) {
-  return fetchRequest(name)
+  return fetchRequest('/api/items/' + encodeURI(name))
 }
 
 function fetchRequest(path) {

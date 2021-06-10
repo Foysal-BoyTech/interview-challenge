@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import ItemList from '../ItemList/ItemList'
 import ItemsInMenu from '../Menu/ItemsInMenu'
 import MenuPreview from '../MenuPreview/MenuPreview'
 import MenuSummary from '../MenuSummary/MenuSummary'
 import Input from '../Input/Input'
+import ApiService from '../../apiService'
 
 export default () => {
   const [menuList, setMenuList] = useState([])
-  const [dietaryList, setDietaryList] = useState([])
+  const [items, setItems] = useState([])
+  useEffect(() => {
+    ApiService.getItems().then((items) => setItems(items.items))
+  }, [])
 
   const addItemToMenu = (item) => {
     const newMenuList = [...menuList, item]
@@ -44,8 +48,8 @@ export default () => {
       <div className="container menu-builder">
         <div className="row">
           <div className="col-4">
-            <Input setMenuList={setMenuList} />
-            <ItemList checkList={checkList} />
+            <Input setItems={setItems} />
+            <ItemList items={items} checkList={checkList} />
           </div>
           <MenuPreview menuList={menuList} deleteItem={deleteItem} />
         </div>

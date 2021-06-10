@@ -1,22 +1,30 @@
-import React, { useState } from 'react'
-import getItemsByName from '../../apiService'
+import React, { useEffect, useState } from 'react'
+import { debounce } from 'lodash'
+import apiService from '../../apiService'
 
-function Input({ setMenuList }) {
+function Input({ setItems }) {
   const [name, setNames] = useState('')
 
-  const handleClick = () => {
-    getItemsByName(name).then((res) => {
-      setMenuList(res)
+  useEffect(() => {
+    console.log(name)
+    if (name.length) searchByName()
+  }, [name])
+
+  const searchByName = debounce(() => {
+    apiService.getItemsByName(name).then((res) => {
+      console.log(res)
+      setItems(res)
     })
-  }
+  }, 400)
 
   return (
     <div className="filters">
       <input
         className="form-control"
         placeholder="Name"
-        onChange={(e) => setNames(e)}
-        onClick={handleClick}
+        value={name}
+        onChange={(e) => setNames(e.target.value)}
+        // onClick={handleClick}
       />
     </div>
   )

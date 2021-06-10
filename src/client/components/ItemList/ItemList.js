@@ -3,11 +3,7 @@ import Item from '../Item/Item'
 import ApiService from '../../apiService'
 import './ItemList.css'
 
-function ItemList({ checkList }) {
-  const [items, setItems] = useState([])
-  useEffect(() => {
-    ApiService.getItems().then((items) => setItems(items.items))
-  }, [])
+function ItemList({ checkList, items }) {
   return (
     <div className="itemList">
       {items.length
